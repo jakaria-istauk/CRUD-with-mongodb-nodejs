@@ -1,0 +1,25 @@
+{
+  "name": "mongo_node_crud",
+  "version": "1.0.0",
+  "description": "crud application with nodejs and mongodb",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakaria-istauk/CRUD-with-mongodb-nodejs.git"
+  },
+  "keywords": [
+    "crud",
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "jakaria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakaria-istauk/CRUD-with-mongodb-nodejs/issues"
+  },
+  "homepage": "https://github.com/jakaria-istauk/CRUD-with-mongodb-nodejs#readme"
+}
