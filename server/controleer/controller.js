@@ -33,13 +33,28 @@ exports.create = (req, res) =>{
 
 //retrive and return all users
 exports.find=(req, res)=>{
-    UserDB.find()
+    if(req.query.id){
+        const id = req.query.id;
+        UserDB.findById(id)
+            .then(user =>{
+                if(!user){
+                    res.status(404).send({message: "Not found user with id "+id})
+                }else{
+                    res.send(user)
+                }
+            })
+            .catch(err=>{
+                res.status(500).send({message:err.message || "Error Occurred while retrivinjg user with id "+id})
+            })
+    }else{
+        UserDB.find()
             .then(users =>{
                 res.send(users)
             })
             .catch(err=>{
                 res.status(500).send({message:err.message || "Error Occurred while retrivinjg user information"})
             })
+    }
 }
 
 //upodate a user by user id
@@ -62,5 +77,19 @@ exports.update=(req, res)=>{
 
 //delete a user by id
 exports.delete=(req, res)=>{
+    const id = req.params.id;
 
+    UserDB.findByIdAndDelete(id)
+            .then(data=>{
+                if(!data){
+                    res.send(404).send({message:`Cannot delete with id ${id}. May be id is wrong`})
+                }else{
+                    res.send({message: "User was deleted successfully!"})
+                }
+            })
+            .catch(err=>{
+                res.status(500).send({
+                    message: "Could not delete user with id="+id
+                });
+            });
 }
